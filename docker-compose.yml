@@ -15,14 +15,14 @@ services:
       interval: 5s
       timeout: 5s
       retries: 10
+    restart: unless-stopped
 
   worker:
-    build: .
+    build: ./google-scraper
     command: python worker.py
     environment:
       AMQP_URL: amqp://admin:admin123@rabbitmq:5672/
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
       - ./downloaded:/data
     depends_on:
       rabbitmq:
