@@ -11,6 +11,6 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the entire project into /app
-COPY . .
+COPY ["google-scraper/", "./"]
 
 CMD ["python", "worker.py"]
